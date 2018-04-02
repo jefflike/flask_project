@@ -1,4 +1,6 @@
-from get_data import get_data
+from app.libs.get_data import get_data
+from flask import current_app
+
 
 class search_book:
     isbn_url = 'http://t.yushu.im/v2/book/isbn/{}'
@@ -11,7 +13,11 @@ class search_book:
         return result
 
     @classmethod
-    def get_key_book(cls, keyword, count = 15, start = 0):
-        url = cls.key_url.format(keyword, count, start)
+    def get_key_book(cls, keyword, page=1):
+        url = cls.key_url.format(keyword, current_app.config['PER_PAGE'], cls.calculate_start(page))
         result = get_data.get(url)
         return result
+
+    @staticmethod
+    def calculate_start(page):
+        return current_app.config['PER_PAGE'] * (page-1)
