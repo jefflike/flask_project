@@ -1,1 +1,5 @@
+*.pyc
+*.exe
+__pycache__/
+migrations/
 .idea/

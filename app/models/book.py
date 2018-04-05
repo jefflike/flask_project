@@ -1,11 +1,11 @@
 import json
 from sqlalchemy import Column, String
 from sqlalchemy import Integer
-from flask_sqlalchemy import SQLAlchemy
+
+from app.models.base import Base
 
 
-db = SQLAlchemy()
-class Book(db.Model):
+class Book(Base):
     """
         一些属性定义重复性比较大，元类可以解决这个问题
     """
