@@ -36,7 +36,7 @@ class search_book:
     def get_isbn_book(self, isbn_num):
         url = self.isbn_url.format(isbn_num)
         result = get_data.get(url)
-        print(self)
+        # print(self)
         self.__single_book_data(result)
 
     def get_key_book(self, keyword, page=1):
@@ -55,3 +55,7 @@ class search_book:
 
     def calculate_start(self,page):
         return current_app.config['PER_PAGE'] * (page-1)
+
+    @property
+    def first(self):
+        return self.books[0] if self.total >= 1 else None
